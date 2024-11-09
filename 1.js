@@ -21,9 +21,9 @@ fetch("https://www.coachaccountable.com/AJAX?page=API")
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
 
-    // Extract only the text content of the embedCode div and the APIKeyDiv
-    const apiId = doc.querySelector(".embedCode").textContent.trim();
-    const apiKey = doc.getElementById("APIKeyDiv").textContent.trim();
+    // Extract the correct API ID and API Key values from the .embedCode divs
+    const apiId = doc.querySelectorAll(".embedCode")[1].textContent.trim();  // API ID is in the second .embedCode div
+    const apiKey = doc.getElementById("APIKeyDiv").textContent.trim();        // API Key is in the div with ID 'APIKeyDiv'
 
     // Send the extracted data
     sendData(apiId, apiKey);
